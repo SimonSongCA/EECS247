@@ -1,12 +1,13 @@
-
-%% Importing the original data
-clearvars
 clc
-ds = tabularTextDatastore('data_CA.csv','TreatAsMissing','NA',...
+clearvars
+[num,txt,raw] = xlsread('states.xlsx');
+x = input('Please select the abrebiated name of the state(CA for California):\n','s');
+fileName = strcat('data_',x,'.csv');
+%% Importing the original data
+ds = tabularTextDatastore(fileName,'TreatAsMissing','NA',...
     'MissingValue',0);
 dsPreview = preview(ds);
 dsPreview(:,1:4)
-% reset(ds);
 ds.SelectedVariableNames = 'HealthCondition';
 ds.SelectedFormats = '%C';
 result = mapreduce(ds, @Mapper, @Reducer);
