@@ -1,27 +1,11 @@
 function Reducer(key, intermValIter, outKV)
-%   maxElapsedTime = -Inf;
-%   while(hasnext(intermValsIter))
-%     maxElapsedTime = max(maxElapsedTime, getnext(intermValsIter));
-%   end
-%   add(outKVStore, "MaxElapsedTime", maxElapsedTime);
-% Iterating the k-v of the intermKVStore
-% while(hasnext(intermValsIter))
-%     fprintf("testing");
-% end
 count = 0;
+% The reducer function counts the occurances of all the keywords
+% from intermKVStore object
 while hasnext(intermValIter)
     data = getnext(intermValIter);
     count = count + data;
 end
+% add the frequency for each of the keywords
 add(outKV, key, count)
 end
-
-% function Reducer(key, intermValIter, outKV)
-% % Combines counts from all blocks to produce final counts.
-% count = 0;
-% while hasnext(intermValIter)
-%     data = getnext(intermValIter);
-%     count = count + data;
-% end
-% add(outKV, key, count)
-% end
