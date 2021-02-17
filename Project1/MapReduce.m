@@ -1,7 +1,7 @@
 clc
 clearvars
 [num,txt,raw] = xlsread('states.xlsx');
-x = input('Please select the abrebiated name of the state(CA for California):\n','s');
+x = input('Please select the abbreviated name of the state(CA for California):\n','s');
 fileName = strcat('data_',x,'.csv');
 %% Importing the original data
 ds = tabularTextDatastore(fileName,'TreatAsMissing','NA',...
