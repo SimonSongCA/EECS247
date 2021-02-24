@@ -4,7 +4,7 @@ n = 2^5;
 m = 2^5;
 % record a cpu time
 tic
-[A,USigmaVT] = dct(m,n);
+[A,USigmaVT] = helper(m,n);
 result = USigmaVT;
 toc
 %%
@@ -21,11 +21,11 @@ toc
 %% problem
 clc
 clearvars
-n = 2^13;
-m = 2^11;
+n = 2^5;
+m = 2^5;
 tic
 matrix = zeros(1,1000);
-[A,USigmaVT] = dct(m,n);
+[A,USigmaVT] = helper(m,n);
 for i = 1:1:1000
     x = normrnd(0,1,[n,1]);
     result = norm(((A - USigmaVT) * x),2) / norm(x,2);
@@ -33,6 +33,7 @@ for i = 1:1:1000
 end
 average = sum(matrix)/1000;
 toc
+fprintf("The error value is: " + average);
 
 
 
