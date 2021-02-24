@@ -1,12 +1,12 @@
 clc
 clearvars
-n = 2^13;
-m = 2^11;
+n = 2^5;
+m = 2^5;
 % record a cpu time
 tic
-result = dct(m,n);
+[A,USigmaVT] = dct(m,n);
+result = USigmaVT;
 toc
-% SpectralNorm
 %%
 clearvars
 clc
@@ -18,9 +18,21 @@ for i = 1:1:10
 end
 avg = sum / 10;
 toc
-
-
-
+%% problem
+clc
+clearvars
+n = 2^13;
+m = 2^11;
+tic
+matrix = zeros(1,1000);
+[A,USigmaVT] = dct(m,n);
+for i = 1:1:1000
+    x = normrnd(0,1,[n,1]);
+    result = norm(((A - USigmaVT) * x),2) / norm(x,2);
+    matrix(i) = result;
+end
+average = sum(matrix)/1000;
+toc
 
 
 

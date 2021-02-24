@@ -1,4 +1,4 @@
-function [result] = dct(m,n)
+function [A, USigmaVT] = dct(m,n)
     i = 2;
     k = 12;
     l = k + 2;
@@ -28,6 +28,7 @@ function [result] = dct(m,n)
     U = U_tilde(1:m,1:k);
     V = V_tilde(1:n,1:k);
     S = S_tilde(1:k,1:k);
+    USigmaVT = U * S * V';
     % Result: L2 Norm
-    result = norm((A - U * S * V'),2);
+    % result = norm((A - U * S * V'),2);
 end
